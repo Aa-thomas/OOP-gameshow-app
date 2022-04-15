@@ -11,7 +11,6 @@ class Phrase {
     addPhraseToDisplay() {
         const phraseToDisplay = this.phrase.split('');
         
-        
         phraseToDisplay.forEach( letter => {
             let letterPlaceHolder = `<li class="hide letter ${letter}">${letter}</li>`;
             if (letter === ' ') {
