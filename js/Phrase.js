@@ -25,20 +25,15 @@ class Phrase {
     * @param (string) guessedletter - Letter to check
     */
     checkLetter(guessedLetter) {
-        const phraseToCheck = this.phrase.split('');
-        let test = phraseToCheck.filter(letter => letter === guessedLetter);
-        if ( test.length > 0 ) {
-            return true 
-        } else {
-            return false
-        }
+       return this.phrase.includes(guessedLetter) ? true : false ;   
     }
+
     /**
     * Displays passed letter on screen after a match is found
     * @param (string) letter - Letter to display
     */
     showMatchedLetter(letter) {
-        const correctLetterClassName = `li[class="hide letter ${letter}"]`
+        const correctLetterClassName = `li.hide.letter.${letter}`
         const matchedLetters = document.querySelectorAll(correctLetterClassName);
         matchedLetters.forEach(element => { 
             element.className = `show letter ${letter}`
