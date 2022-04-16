@@ -42,8 +42,10 @@ class Game {
     won
     */
     checkForWin() {
-
+        const hiddenLetters = document.querySelectorAll('li.hide');
+        return hiddenLetters.length > 0 ? false : true ;
     }
+
 
     /**
     * Increases the value of the missed property
@@ -51,7 +53,13 @@ class Game {
     * Checks if player has remaining lives and ends game if player is out
     */
     removeLife() {
-
+        if  (this.activePhrase.checkLetter() === false ) {
+            this.missed++
+            document.querySelector('img[src="images/liveHeart.png"').setAttribute('src', 'images/lostHeart.png');
+            if (this.missed > 4) {
+                this.gameOver();
+            }
+        }
     }
 
     /**
@@ -59,7 +67,19 @@ class Game {
     * @param {boolean} gameWon - Whether or not the user won the game
     */
     gameOver(gameWon) {
+        const startScreen = document.getElementById('overlay');
+        const gameOverMessage = document.getElementById('game-over-message');
+        startScreen.style.display = 'block';
+        gameWon = this.checkForWin();
 
+        if ( gameWon ) {
+            startScreen.className = 'win';
+            gameOverMessage.textContent = 'You Win!';
+        } else {
+            startScreen.className = 'lose';
+            gameOverMessage.textContent = 'You Lose!';
+        }    
     }
+    
 
 }
