@@ -34,6 +34,7 @@ class Game {
         let randomPhrase = this.getRandomPhrase().phrase
         this.activePhrase = new Phrase(randomPhrase);
         this.activePhrase.addPhraseToDisplay();
+        
     }
 
     /**
@@ -78,8 +79,43 @@ class Game {
         } else {
             startScreen.className = 'lose';
             gameOverMessage.textContent = 'You Lose!';
-        }    
+        }
+        this.resetGame();    
+    }
+
+    /**
+    * Handles onscreen keyboard button clicks
+    * @param (HTMLButtonElement) button - The clicked button element
+    */
+    handleInteraction(button) {
+        let chosenLetter = button.textContent;
+        let letterIsCorrect = this.activePhrase.checkLetter(chosenLetter);
+
+        if (letterIsCorrect) {
+            button.disabled = true;
+            button.className = 'chosen';
+            this.activePhrase.showMatchedLetter(chosenLetter);
+            this.checkForWin() ?  this.gameOver() : false;
+        } else {
+            button.className = 'wrong';
+            this.removeLife();
+        }
+    
     }
     
+    /**
+     * Reset Gameboard
+     */
+    resetGame() {
+        const allPhraseLetters = document.querySelectorAll('ul > li');
+        const onScreenKeyboard = document.querySelectorAll('.keyrow > button')
+        const hearts = document.querySelectorAll('li.tries > img')
 
+        allPhraseLetters.forEach( letter => letter.remove() );
+        onScreenKeyboard.forEach( button => {
+            button.disabled = false;
+            button.className = 'key'
+        });
+        hearts.forEach( heart => heart.setAttribute('src', 'images/liveHeart.png') )   
+    }
 }
