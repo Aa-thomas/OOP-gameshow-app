@@ -43,8 +43,8 @@ class Game {
     won
     */
     checkForWin() {
-        const hiddenLetters = document.querySelectorAll('li.hide');
-        return hiddenLetters.length > 0 ? false : true ;
+        const hiddenLetters = document.querySelectorAll('li.hide').length;
+        return hiddenLetters > 0 ?  false : true ;
     }
 
 
@@ -56,7 +56,8 @@ class Game {
     removeLife() {
         if  (this.activePhrase.checkLetter() === false ) {
             this.missed++
-            document.querySelector('img[src="images/liveHeart.png"').setAttribute('src', 'images/lostHeart.png');
+            document.querySelector('img[src="images/liveHeart.png"]')
+                .setAttribute('src', 'images/lostHeart.png');
             if (this.missed > 4) {
                 this.gameOver();
             }

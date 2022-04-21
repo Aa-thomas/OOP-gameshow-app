@@ -13,7 +13,7 @@ startGameButton.addEventListener('click', () => {
     game.startGame();
 })
 
-/*
+/** 
  * Onscreen keyboard button event listeners
  */
 const onScreenButtons = document.querySelectorAll('button.key')
@@ -21,9 +21,12 @@ onScreenButtons.forEach( button => button.addEventListener('click', (e) => {
     game.handleInteraction(e.target);
 } ))
 
+/** 
+ * Physical keyboard button event listeners
+ */
 document.addEventListener( 'keyup', (e) => {
-    let buttons =  Array.from(onScreenButtons)
-    buttons.filter( button => button.textContent === e.key )
+    let keyBoardButtons =  Array.from(onScreenButtons)
+    keyBoardButtons.filter( button => button.textContent === e.key )
         .forEach( button => button.click() );
 })
 

@@ -35,8 +35,8 @@ class Phrase {
     showMatchedLetter(letter) {
         const letterClassName = `li.hide.letter.${letter}`
         const matchedLetters = document.querySelectorAll(letterClassName);
-        matchedLetters.forEach(element => { 
-            element.className = `show letter ${letter}`
+        matchedLetters.forEach(matchedLetter => { 
+            matchedLetter.className = `show letter ${letter}`
         });
     }
 
